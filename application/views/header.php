@@ -17,9 +17,9 @@
 
         <link href="/assets/css/plusstrap.css" rel="stylesheet" media="screen">
         <link href="/assets/css/plusstrap-responsive.css" rel="stylesheet">
-<!--        <link href="/assets/css/bootstrap-button.css" rel="stylesheet">
-        <link href="/assets/css/bootstrap-fileupload.css" rel="stylesheet">
-        <link href="/assets/css/font-awesome.min.css" rel="stylesheet">-->
+        <!--        <link href="/assets/css/bootstrap-button.css" rel="stylesheet">
+                <link href="/assets/css/bootstrap-fileupload.css" rel="stylesheet">
+                <link href="/assets/css/font-awesome.min.css" rel="stylesheet">-->
         <link href="/assets/css/datepicker.css" rel="stylesheet">
 
 
@@ -58,7 +58,7 @@
             $("#organization_short_name").focus(function() {
                 $("#help-block-organization_short_name").css('display', 'inline').fadeOut(3000);
             });
-            
+
             $("#organization_full_name").focus(function() {
                 $("#help-block-organization_full_name").css('display', 'inline').fadeOut(3000);
             });
@@ -109,45 +109,45 @@
                 language: "ru",
                 autoclose: true
             });
-             $(function () {
-                $('#myTab a').click(function (e) {
+            $(function() {
+                $('#myTab a').click(function(e) {
                     e.preventDefault();
                     $(this).tab('show');
                 });
-                $('#myTab1 a').click(function (e) {
+                $('#myTab1 a').click(function(e) {
                     e.preventDefault();
                     $(this).tab('show');
                 });
-             });
-            
+            });
+
         });
         function submit_form() {
 
-                var contract_number = $("#contract_number").val();
-                var contract_date = $("#contract_date").val();
-                var organization_short_name = $("#organization_short_name").val();
-                var organization_full_name = $("#organization_full_name").val();
-                var boss_name = $("#boss_name").val();
-                var boss_work_position = $("#boss_work_position").val();
-                var basis_name = $("#basis_name").val();
-                var address = $("#address").val();
-                var inn_kpp = $("#inn_kpp").val();
-                var current_account = $("#current_account").val();
-                var bank = $("#bank").val();
-                var correspondent_account = $("#correspondent_account").val();
-                var bik = $("#bik").val();
-                var phone_number = $("#phone_number").val();
-                var email = $("#email").val();
+            var contract_number = $("#contract_number").val();
+            var contract_date = $("#contract_date").val();
+            var organization_short_name = $("#organization_short_name").val();
+            var organization_full_name = $("#organization_full_name").val();
+            var boss_name = $("#boss_name").val();
+            var boss_work_position = $("#boss_work_position").val();
+            var basis_name = $("#basis_name").val();
+            var address = $("#address").val();
+            var inn_kpp = $("#inn_kpp").val();
+            var current_account = $("#current_account").val();
+            var bank = $("#bank").val();
+            var correspondent_account = $("#correspondent_account").val();
+            var bik = $("#bik").val();
+            var phone_number = $("#phone_number").val();
+            var email = $("#email").val();
 
-                $.post('<?php echo site_url('/general/aggregateDocx'); ?>', {'contract_number':contract_number, 'contract_date':contract_date,
-                'organization_short_name':organization_short_name, 'organization_full_name':organization_full_name, 'boss_name':boss_name, 'boss_work_position':boss_work_position, 'basis_name':basis_name,
-                'address':address, 'inn_kpp':inn_kpp, 'current_account':current_account, 'bank':bank, 'correspondent_account':correspondent_account,
-                'bik':bik, 'phone_number':phone_number, 'email':email},
-                function(data) {
-                    console.info(data);
-                });
+            $.post('<?php echo site_url('/general/aggregateDocx'); ?>', {'contract_number': contract_number, 'contract_date': contract_date,
+                'organization_short_name': organization_short_name, 'organization_full_name': organization_full_name, 'boss_name': boss_name, 'boss_work_position': boss_work_position, 'basis_name': basis_name,
+                'address': address, 'inn_kpp': inn_kpp, 'current_account': current_account, 'bank': bank, 'correspondent_account': correspondent_account,
+                'bik': bik, 'phone_number': phone_number, 'email': email},
+            function(data) {
+                console.info(data);
+            });
 
-            }
+        }
     </script>
     <div class="page-header">
         <div class="navbar navbar-fixed-top">
