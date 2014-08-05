@@ -4,15 +4,14 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 class Admin extends CI_Controller {
-	
+
     protected $path_img_upload_folder;
     protected $path_img_thumb_upload_folder;
     protected $path_url_img_upload_folder;
     protected $path_url_img_thumb_upload_folder;
-
     protected $delete_img_url;
 
-  function __construct() {
+    function __construct() {
         parent::__construct();
         $this->load->helper(array('form', 'url'));
 
@@ -20,22 +19,19 @@ class Admin extends CI_Controller {
         $this->setPath_img_upload_folder("assets/img/articles/");
         $this->setPath_img_thumb_upload_folder("assets/img/articles/thumbnails/");
 
-        
+
 //Delete img url
         $this->setDelete_img_url(base_url() . 'admin/deleteImage/');
- 
+
 
 //Set url img with Base_url()
         $this->setPath_url_img_upload_folder(base_url() . "assets/img/articles/");
         $this->setPath_url_img_thumb_upload_folder(base_url() . "assets/img/articles/thumbnails/");
-  }
-
+    }
 
     public function index() {
-      $this->load->view('admin_view');
-   }
-
-  
+        $this->load->view('admin_view');
+    }
 
     public function upload_img() {
         $name = $_FILES['userfile']['name'];
@@ -43,20 +39,20 @@ class Admin extends CI_Controller {
 
 // remplacer les caracteres autres que lettres, chiffres et point par _
 
-         $name = preg_replace('/([^.a-z0-9]+)/i', '_', $name);
+        $name = preg_replace('/([^.a-z0-9]+)/i', '_', $name);
 
         //Your upload directory, see CI user guide
         $config['upload_path'] = $this->getPath_img_upload_folder();
-  
+
         $config['allowed_types'] = 'gif|jpg|png|JPG|GIF|PNG';
         $config['max_size'] = '1000';
         $config['file_name'] = $name;
 
-       //Load the upload library
+        //Load the upload library
         $this->load->library('upload', $config);
 
-       if ($this->do_upload()) {
-            
+        if ($this->do_upload()) {
+
             //If you want to resize 
             $config['new_image'] = $this->getPath_img_thumb_upload_folder();
             $config['image_library'] = 'gd2';
@@ -70,11 +66,11 @@ class Admin extends CI_Controller {
 
             $this->image_lib->resize();
 
-           $data = $this->upload->data();
+            $data = $this->upload->data();
 
             //Get info 
             $info = new stdClass();
-            
+
             $info->name = $name;
             $info->size = $data['file_size'];
             $info->type = $data['file_type'];
@@ -84,8 +80,8 @@ class Admin extends CI_Controller {
             $info->delete_type = 'DELETE';
 
 
-           //Return JSON data
-           if (IS_AJAX) {   //this is why we put this in the constants to pass only json data
+            //Return JSON data
+            if (IS_AJAX) {   //this is why we put this in the constants to pass only json data
                 echo json_encode(array($info));
                 //this has to be the only the only data returned or you will get an error.
                 //if you don't give this a json array it will give you a Empty file upload result error
@@ -96,19 +92,16 @@ class Admin extends CI_Controller {
             }
         } else {
 
-           // the display_errors() function wraps error messages in <p> by default and these html chars don't parse in
-           // default view on the forum so either set them to blank, or decide how you want them to display.  null is passed.
-            $error = array('error' => $this->upload->display_errors('',''));
+            // the display_errors() function wraps error messages in <p> by default and these html chars don't parse in
+            // default view on the forum so either set them to blank, or decide how you want them to display.  null is passed.
+            $error = array('error' => $this->upload->display_errors('', ''));
 
             echo json_encode(array($error));
         }
-
-
-       }
-
+    }
 
 //Function for the upload : return true/false
-  public function do_upload() {
+    public function do_upload() {
 
         if (!$this->upload->do_upload()) {
 
@@ -118,13 +111,13 @@ class Admin extends CI_Controller {
 
             return true;
         }
-     }
+    }
 
-public function deleteImage() {
+    public function deleteImage() {
 
         //Get the name in the url
         $file = $this->uri->segment(3);
-        
+
         $success = unlink($this->getPath_img_upload_folder() . $file);
         $success_th = unlink($this->getPath_img_thumb_upload_folder() . $file);
 
@@ -170,7 +163,7 @@ public function deleteImage() {
             //File name in the url to delete 
             $file->delete_url = $this->getDelete_img_url() . rawurlencode($file->name);
             $file->delete_type = 'DELETE';
-            
+
             return $file;
         }
         return null;
@@ -178,10 +171,9 @@ public function deleteImage() {
 
     protected function get_file_objects() {
         return array_values(array_filter(array_map(
-             array($this, 'get_file_object'), scandir($this->getPath_img_upload_folder())
-                   )));
+                                array($this, 'get_file_object'), scandir($this->getPath_img_upload_folder())
+        )));
     }
-
 
     public function getPath_img_upload_folder() {
         return $this->path_img_upload_folder;
@@ -222,10 +214,6 @@ public function deleteImage() {
     public function setDelete_img_url($delete_img_url) {
         $this->delete_img_url = $delete_img_url;
     }
-
-
-
-
 
 }
 
