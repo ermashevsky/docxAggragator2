@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="robots" content="noindex,nofollow"/>
-        <title>Газовик | <?php echo $title; ?></title>
+        <title><?php echo $title; ?></title>
         <script src="http://code.jquery.com/jquery-latest.js"></script>
         <script src="/assets/js/bootstrap.min.js"></script>
         <script src="/assets/js/bootstrap-button.js"></script>
@@ -419,6 +419,7 @@
                     data: form,
                     success: function(data) {
                         $(".modal.fade.bs-example-modal-sm").modal('hide');
+                        setTimeout('window.location.reload()','1000');
                     }
 
                 });
@@ -596,6 +597,9 @@
 
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
+                <div class="container-fluid pull-left">
+                <a class="brand"><i class="icon-pencil"></i> Господин Заполнитель 1.0</a>
+            </div>
                 <div class="container-fluid pull-right">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                         <span class="icon-bar"></span>
@@ -604,8 +608,9 @@
                     </a>
                     <div class="nav-collapse collapse">
                         <ul class="nav">
-                            <li><a>Здравствуйте, <?php echo $user->username; ?></a></li>
+                            <li><a>Здравствуйте, <?php echo $user->first_name; ?></a></li>
                             <li><a href="/"><i class="icon-home icon-white"> </i>Главная</a></li>
+                            <li><a href="/general/fileList"><i class="icon-home icon-list-alt"> </i>Список договоров</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-wrench icon-white"> </i>Админка<b class="caret"></b></a>
                                 <ul class="dropdown-menu">

@@ -7,7 +7,7 @@
                     <div class="span12">
 <div class='mainInfo'>
 
-	<h3>Блокирование пользователя</h3>
+	<h3 style="color:#08c;">Блокирование пользователя</h3>
     <div class="pageTitleBorder"></div>
 	<p>Вы действительно хотите заблокировать пользователя '<b><?php echo $user->username; ?></b>' ?</p>
 	

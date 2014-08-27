@@ -275,7 +275,7 @@ class Auth extends CI_Controller {
             // insert csrf check
             $data['csrf'] = $this->_get_csrf_nonce();
             $data['user'] = $this->ion_auth->user($id)->row();
-            $this->load->view('auth/header');
+            $this->load->view('auth/header', $data);
             $this->load->view('auth/deactivate_user', $data);
         } else {
             // do we really want to deactivate?
@@ -307,6 +307,9 @@ class Auth extends CI_Controller {
         //validate form input
 
         $this->form_validation->set_rules('email', 'Email Address', 'required|valid_email');
+        $this->form_validation->set_rules('first_name', 'First Name', 'required|xss_clean');
+        $this->form_validation->set_rules('middle_name', 'Middle Name', 'required|xss_clean');
+        $this->form_validation->set_rules('last_name', 'Last Name', 'required|xss_clean');
         $this->form_validation->set_rules('phone', 'First Part of Phone', 'required|xss_clean');
         $this->form_validation->set_rules('password', 'Password', 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
         $this->form_validation->set_rules('password_confirm', 'Password Confirmation', 'required');
@@ -318,6 +321,9 @@ class Auth extends CI_Controller {
 
             $additional_data = array(
                 'phone' => $this->input->post('phone'),
+                'last_name' => $this->input->post('last_name'),
+                'first_name' => $this->input->post('first_name'),
+                'middle_name' => $this->input->post('middle_name'),
             );
         }
         if ($this->form_validation->run() == true && $this->ion_auth->register($username, $password, $email, $additional_data)) { //check to see if we are creating the user
@@ -338,6 +344,24 @@ class Auth extends CI_Controller {
                 'id' => 'email',
                 'type' => 'text',
                 'value' => $this->form_validation->set_value('email'),
+            );
+            
+            $data['last_name'] = array('name' => 'last_name',
+                'id' => 'last_name',
+                'type' => 'text',
+                'value' => $this->form_validation->set_value('last_name'),
+            );
+            
+            $data['first_name'] = array('name' => 'first_name',
+                'id' => 'first_name',
+                'type' => 'text',
+                'value' => $this->form_validation->set_value('first_name'),
+            );
+            
+            $data['middle_name'] = array('name' => 'middle_name',
+                'id' => 'middle_name',
+                'type' => 'text',
+                'value' => $this->form_validation->set_value('middle_name'),
             );
 
             $data['phone'] = array('name' => 'phone',
@@ -368,52 +392,6 @@ class Auth extends CI_Controller {
         }
     }
 
-    //create a new user
-    function createPhoneDeptsRecord() {
-        $data['title'] = "Create User";
-
-        if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin()) {
-            redirect('auth', 'refresh');
-        }
-
-        //validate form input
-        $this->form_validation->set_rules('external_number', 'Внешний номер', 'required|xss_clean');
-        $this->form_validation->set_rules('contactName', 'Наименование контакта', 'required|xss_clean');
-
-        if ($this->form_validation->run() == true) {
-
-            $additional_data = array(
-                'external_number' => $this->input->post('external_number'),
-                'contactName' => $this->input->post('contactName'),
-            );
-
-            $this->load->model('general_model');
-            $this->general_model->insertNewPhoneDeptsData($additional_data);
-
-            $this->session->set_flashdata('message', "Новая запись добавлена");
-            redirect("auth", 'refresh');
-        } else {
-            ////display the create user form
-            //set the flash data error message if there is one
-            $data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
-
-            $data['external_number'] = array('name' => 'external_number',
-                'id' => 'external_number',
-                'type' => 'text',
-                'value' => $this->form_validation->set_value('external_number'),
-            );
-
-            $data['contactName'] = array('name' => 'contactName',
-                'id' => 'contactName',
-                'type' => 'text',
-                'value' => $this->form_validation->set_value('contactName'),
-            );
-//                        $this->load->view('auth/header');
-//	            $this->load->view('auth/create_user', $data);
-//                        $this->load->view('auth/rightbar');
-//                        $this->load->view('auth/footer');
-        }
-    }
 
     function edit_user($id) {
         $data['title'] = "Редактирование профиля пользователя";
@@ -427,6 +405,9 @@ class Auth extends CI_Controller {
 
         //validate form input
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+        $this->form_validation->set_rules('last_name', 'Фамилия', 'xss_clean');
+        $this->form_validation->set_rules('first_name', 'Имя', 'xss_clean');
+        $this->form_validation->set_rules('middle_name', 'Отчество', 'xss_clean');
         $this->form_validation->set_rules('phone', 'Телефон', 'required|xss_clean|min_length[2]|max_length[15]');
         $this->form_validation->set_rules('groups', 'Группа', 'xss_clean');
 
@@ -435,6 +416,9 @@ class Auth extends CI_Controller {
             //$id = (int) $this -> input -> post('id');
             $data = array(
                 'username' => $this->input->post('username'),
+                'last_name' => $this->input->post('last_name'),
+                'first_name' => $this->input->post('first_name'),
+                'middle_name' => $this->input->post('middle_name'),
                 'email' => $this->input->post('email'),
                 'phone' => $this->input->post('phone'),);
             //Update the groups user belongs to
@@ -491,6 +475,30 @@ class Auth extends CI_Controller {
                 'type' => 'text',
                 'value' => $this->form_validation->set_value('username', $user->username),
                 'readonly' => 'true',
+            );
+            
+            $this->data['last_name'] = array(
+                'name' => 'last_name',
+                'id' => 'last_name',
+                'type' => 'text',
+                'value' => $this->form_validation->set_value('username', $user->last_name),
+                
+            );
+            
+            $this->data['first_name'] = array(
+                'name' => 'first_name',
+                'id' => 'first_name',
+                'type' => 'text',
+                'value' => $this->form_validation->set_value('username', $user->first_name),
+                
+            );
+            
+            $this->data['middle_name'] = array(
+                'name' => 'middle_name',
+                'id' => 'middle_name',
+                'type' => 'text',
+                'value' => $this->form_validation->set_value('username', $user->middle_name),
+                
             );
 
             $this->data['email'] = array(

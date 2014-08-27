@@ -345,15 +345,19 @@
                 <div class="nav-collapse collapse">
 
                     <ul class="nav">
-                        <li><a>Здравствуйте, <?php echo $user->username; ?></a></li>
+                        <li><a>Здравствуйте, <?php echo $user->first_name; ?></a></li>
                         <li><a href="/"><i class="icon-home icon-white"> </i>Главная</a></li>
                         <li><a href="/general/fileList"><i class="icon-home icon-list-alt"> </i>Список договоров</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-wrench icon-white"> </i>Админка<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/auth/"><i class="icon-user icon-white"> </i>Пользователи</a></li>
-                            </ul>
-                        </li>          
+                        <?php
+                            if ($this->ion_auth->is_admin()) {
+                                ?>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-wrench icon-white"> </i>Админка<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/auth/"><i class="icon-user icon-white"> </i>Пользователи</a></li>
+                                    </ul>
+                                </li>          
+                            <?php } ?>          
 
                         <li class="pull-right"><a href="/auth/logout"><i class="icon-arrow-right icon-white"> </i>Выход</a></li>
 

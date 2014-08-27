@@ -12,6 +12,9 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Логин</th>
+                                    <th>Фамилия</th>
+                                    <th>Имя</th>
+                                    <th>Отчество</th>
                                     <th>Email</th>
                                     <th>Телефон</th>
                                     <th>Роль (Группа)</th>
@@ -27,6 +30,9 @@
                                     <tr>
                                         <td><?php echo $n++; ?></td>
                                         <td><?php echo $user->username; ?></td>
+                                        <td><?php echo $user->last_name; ?></td>
+                                        <td><?php echo $user->first_name; ?></td>
+                                        <td><?php echo $user->middle_name; ?></td>
                                         <td><?php echo $user->email; ?></td>
                                         <td><?php echo $user->phone; ?></td>
                                         <td>
@@ -75,6 +81,33 @@
 
 <!-- Text input-->
 <div class="control-group">
+  <label class="control-label" for="last_name">Фамилия</label>
+  <div class="controls">
+    <input id="last_name" name="last_name" type="text" placeholder="Введите фамилию" class="input-xlarge" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label" for="first_name">Имя</label>
+  <div class="controls">
+    <input id="first_name" name="first_name" type="text" placeholder="Введите имя" class="input-xlarge" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label" for="middle_name">Отчество</label>
+  <div class="controls">
+    <input id="middle_name" name="middle_name" type="text" placeholder="Введите отчество" class="input-xlarge" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="control-group">
   <label class="control-label" for="email">Email</label>
   <div class="controls">
     <input id="email" name="email" type="text" placeholder="Введите email" class="input-xlarge">
@@ -104,7 +137,7 @@
 
 <!-- Password input-->
 <div class="control-group">
-  <label class="control-label" for="password">Пароль (не менее 8 символов)</label>
+  <label class="control-label" for="password">Пароль (не менее 4 символов)</label>
   <div class="controls">
     <input id="password" name="password" type="password" placeholder="Введите пароль" class="input-xlarge" required="">
     

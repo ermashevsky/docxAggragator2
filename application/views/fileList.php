@@ -15,6 +15,11 @@
                         </thead>
                         <tbody>
                     <?php
+                    $structure = filter_input(INPUT_SERVER, 'DOCUMENT_ROOT') . '/uploads/' . $user->username . '/';
+
+                    if (!file_exists($structure)) {
+                        mkdir($structure, 0777, true);
+                    }
                     
                     $path = 'uploads/' . $user->username . '/';
                     $structure = filter_input(INPUT_SERVER, 'DOCUMENT_ROOT') . '/uploads/' . $user->username . '/';

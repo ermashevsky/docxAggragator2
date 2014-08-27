@@ -12,6 +12,15 @@
                             <p>Логин:<br />
                                 <?php echo form_input($username); ?>
                             </p>
+                            <p>Фамилия:<br />
+                                <?php echo form_input($last_name); ?>
+                            </p>
+                            <p>Имя:<br />
+                                <?php echo form_input($first_name); ?>
+                            </p>
+                            <p>Отчество:<br />
+                                <?php echo form_input($middle_name); ?>
+                            </p>
                             <p>Email:<br />
                                 <?php echo form_input($email); ?>
                             </p>
