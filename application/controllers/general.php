@@ -65,48 +65,47 @@ class General extends CI_Controller {
             $this->load->view('fileList');
         }
     }
-    
+
     function delete_user() {
         $id = $this->input->post('id');
         $this->load->model('general_model');
         $this->general_model->deleteUserRecord($id);
         $this->session->set_flashdata('message', "Пользователь удален");
     }
-    
-     public function sendMail() {
+
+    public function sendMail() {
         $this->load->library('email');
-        
+
         $attachment = $this->input->post('attachment');
         $mail = $this->input->post('mail');
-        
-        
-        
-            $config['protocol'] = 'smtp';
-            $config['smtp_host'] = 'smtp.dialog64.ru';
-            $config['smtp_user'] = 'ermashevsky@dialog64.ru';
-            $config['smtp_pass'] = 'kk6k29';
-            $config['smtp_port'] = '25';
-            $config['smtp_timeout'] = '30';
 
-            $config['charset'] = 'utf-8';
-            $config['crlf'] = "\r\n";
-            $config['newline'] = "\r\n";
-            $config['wordwrap'] = TRUE;
+
+
+        $config['protocol'] = 'smtp';
+        $config['smtp_host'] = 'smtp.dialog64.ru';
+        $config['smtp_user'] = 'ermashevsky@dialog64.ru';
+        $config['smtp_pass'] = 'kk6k29';
+        $config['smtp_port'] = '25';
+        $config['smtp_timeout'] = '30';
+
+        $config['charset'] = 'utf-8';
+        $config['crlf'] = "\r\n";
+        $config['newline'] = "\r\n";
+        $config['wordwrap'] = TRUE;
 
         $this->email->initialize($config);
-        
+
         $this->email->from('ermashevsky@dialog64.ru', 'Автоинформатор');
         $this->email->to($mail);
         $this->email->subject('Файл договора');
         $this->email->attach($attachment);
         $message = "Вы выбрали опцию 'Отправить на почту' в системе заполнения договоров. Высылаем Вам файл. Файл во вложении";
-        $this->email->message('Здравствуйте! '.$message);
-        
+        $this->email->message('Здравствуйте! ' . $message);
+
         $this->email->send();
         return true;
     }
-    
-    
+
     function formatSizeUnits($bytes) {
         if ($bytes >= 1073741824) {
             $bytes = number_format($bytes / 1073741824, 2) . ' GB';
@@ -196,22 +195,21 @@ class General extends CI_Controller {
 
         //Указываем путь до подготовленного документа
         $template = filter_input(INPUT_SERVER, 'DOCUMENT_ROOT') . '/document.docx';
-        $newfile = filter_input(INPUT_SERVER, 'DOCUMENT_ROOT') . '/uploads/' . $data['user']->username . '/dogovor_' . $this->input->post('contract_number') . '.docx';
-        $f_name = 'dogovor_' . $this->input->post('contract_number') . '.docx';
+        $newfile = filter_input(INPUT_SERVER, 'DOCUMENT_ROOT') . '/uploads/' . $data['user']->username . '/' . str_replace("/", "_", $this->input->post('contract_number')) . '_dogovor.docx';
+        $f_name = $this->input->post('contract_number') . '_dogovor.docx';
         copy($template, $newfile);
         $docxFile = $newfile;
 
         $boss_name_genetive = $this->getNewFormText($this->input->post('boss_name'), 1);
         $boss_work_position_genetive = $this->getNewFormText($this->input->post('boss_work_position'), 1);
         $basis_name_genetive = $this->getNewFormText($this->input->post('basis_name'), 1);
-
-        $boss_name_short = preg_replace('/(\w+) (\w)\w+ (\w)\w+/iu', '$1 $2.$3.', $this->input->post('boss_name'));
-
+        $boss_name_short = preg_replace('/(\w+) (\w)\w+ (\w)\w+/iu', '$2.$3.$1', $this->input->post('boss_name'));
+        $formattedDate = $this->rus_date("j F Y ", strtotime($this->input->post('contract_date')));
 
         //Список параметров
         $params = array(
             '{CONTRACT_NUMBER}' => $this->input->post('contract_number'),
-            '{CONTRACT_DATE}' => $this->input->post('contract_date'),
+            '{CONTRACT_DATE}' => mb_strtolower($formattedDate),
             '{ORGANIZATION_SHORT_NAME}' => $this->input->post('organization_short_name'),
             '{ORGANIZATION_FULL_NAME}' => $this->input->post('organization_full_name'),
             '{BOSS_NAME}' => $boss_name_short,
@@ -236,7 +234,10 @@ class General extends CI_Controller {
             '{POST_OFFICE}' => $this->input->post('post_office'),
             '{POST_BOX}' => $this->input->post('post_box'),
             '{POST_APPARTMENT}' => $this->input->post('post_appartment'),
-            '{MANAGER}' => $data['user']->last_name." ".$data['user']->first_name." ".$data['user']->middle_name,
+            '{MANAGER}' => $data['user']->last_name . " " . $data['user']->first_name . " " . $data['user']->middle_name,
+            '{JOB_MANAGER_POSITION}' => $data['user']->job_manager_position,
+            '{CONTACT_PERSON}' => $this->input->post('contact_person'),
+            '{JOB_CONTACT_PERSON}' => $this->input->post('job_contact_person'),
         );
 
         if (!file_exists($docxFile)) {
@@ -262,14 +263,73 @@ class General extends CI_Controller {
 
         echo json_encode($f_name);
     }
-    
-    function deleteFile(){
+
+    function rus_date() {
+// Перевод
+        $translate = array(
+            "am" => "дп",
+            "pm" => "пп",
+            "AM" => "ДП",
+            "PM" => "ПП",
+            "Monday" => "Понедельник",
+            "Mon" => "Пн",
+            "Tuesday" => "Вторник",
+            "Tue" => "Вт",
+            "Wednesday" => "Среда",
+            "Wed" => "Ср",
+            "Thursday" => "Четверг",
+            "Thu" => "Чт",
+            "Friday" => "Пятница",
+            "Fri" => "Пт",
+            "Saturday" => "Суббота",
+            "Sat" => "Сб",
+            "Sunday" => "Воскресенье",
+            "Sun" => "Вс",
+            "January" => "Января",
+            "Jan" => "Янв",
+            "February" => "Февраля",
+            "Feb" => "Фев",
+            "March" => "Марта",
+            "Mar" => "Мар",
+            "April" => "Апреля",
+            "Apr" => "Апр",
+            "May" => "Мая",
+            "May" => "Мая",
+            "June" => "Июня",
+            "Jun" => "Июн",
+            "July" => "Июля",
+            "Jul" => "Июл",
+            "August" => "Августа",
+            "Aug" => "Авг",
+            "September" => "Сентября",
+            "Sep" => "Сен",
+            "October" => "Октября",
+            "Oct" => "Окт",
+            "November" => "Ноября",
+            "Nov" => "Ноя",
+            "December" => "Декабря",
+            "Dec" => "Дек",
+            "st" => "ое",
+            "nd" => "ое",
+            "rd" => "е",
+            "th" => "ое"
+        );
+        // если передали дату, то переводим ее
+        if (func_num_args() > 1) {
+            $timestamp = func_get_arg(1);
+            return strtr(date(func_get_arg(0), $timestamp), $translate);
+        } else {
+// иначе текущую дату
+            return strtr(date(func_get_arg(0)), $translate);
+        }
+    }
+
+    function deleteFile() {
         $file = $this->input->post('file');
-        
-        if($this->input->post('file')){
+
+        if ($this->input->post('file')) {
             unlink($file);
         }
-        
     }
 
 }

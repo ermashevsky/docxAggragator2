@@ -15,9 +15,10 @@
                                     <th>Фамилия</th>
                                     <th>Имя</th>
                                     <th>Отчество</th>
+                                    <th>Должность</th>
                                     <th>Email</th>
                                     <th>Телефон</th>
-                                    <th>Роль (Группа)</th>
+<!--                                    <th>Роль (Группа)</th>-->
 <!--                                    <th>Уведомление по email</th>-->
                                     <th>Статус</th>
                                     <th>Действия</th>
@@ -33,13 +34,14 @@
                                         <td><?php echo $user->last_name; ?></td>
                                         <td><?php echo $user->first_name; ?></td>
                                         <td><?php echo $user->middle_name; ?></td>
+                                        <td><?php echo $user->job_manager_position; ?></td>
                                         <td><?php echo $user->email; ?></td>
                                         <td><?php echo $user->phone; ?></td>
-                                        <td>
+<!--                                        <td>
                                             <?php foreach ($user->groups as $group): ?>
                                                 <?php echo $group->name; ?><br />
                                             <?php endforeach ?>
-                                        </td>
+                                        </td>-->
 <!--                                        <td>
                                             <?php if($user->email_notification === '1'){
                                                 echo "Уведомлять";
@@ -106,6 +108,14 @@
   </div>
 </div>
 
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label" for="job_manager_position">Должность</label>
+  <div class="controls">
+    <input id="job_manager_position" name="job_manager_position" type="text" placeholder="Введите должность" class="input-xlarge" required="">
+    
+  </div>
+</div>
 <!-- Text input-->
 <div class="control-group">
   <label class="control-label" for="email">Email</label>

@@ -310,6 +310,7 @@ class Auth extends CI_Controller {
         $this->form_validation->set_rules('first_name', 'First Name', 'required|xss_clean');
         $this->form_validation->set_rules('middle_name', 'Middle Name', 'required|xss_clean');
         $this->form_validation->set_rules('last_name', 'Last Name', 'required|xss_clean');
+        $this->form_validation->set_rules('job_manager_position', 'Middle Name', 'required|xss_clean');
         $this->form_validation->set_rules('phone', 'First Part of Phone', 'required|xss_clean');
         $this->form_validation->set_rules('password', 'Password', 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
         $this->form_validation->set_rules('password_confirm', 'Password Confirmation', 'required');
@@ -324,6 +325,7 @@ class Auth extends CI_Controller {
                 'last_name' => $this->input->post('last_name'),
                 'first_name' => $this->input->post('first_name'),
                 'middle_name' => $this->input->post('middle_name'),
+                'job_manager_position' => $this->input->post('job_manager_position'),
             );
         }
         if ($this->form_validation->run() == true && $this->ion_auth->register($username, $password, $email, $additional_data)) { //check to see if we are creating the user
@@ -362,6 +364,12 @@ class Auth extends CI_Controller {
                 'id' => 'middle_name',
                 'type' => 'text',
                 'value' => $this->form_validation->set_value('middle_name'),
+            );
+            
+            $data['job_manager_position'] = array('name' => 'job_manager_position',
+                'id' => 'job_manager_position',
+                'type' => 'text',
+                'value' => $this->form_validation->set_value('job_manager_position'),
             );
 
             $data['phone'] = array('name' => 'phone',
@@ -408,6 +416,7 @@ class Auth extends CI_Controller {
         $this->form_validation->set_rules('last_name', 'Фамилия', 'xss_clean');
         $this->form_validation->set_rules('first_name', 'Имя', 'xss_clean');
         $this->form_validation->set_rules('middle_name', 'Отчество', 'xss_clean');
+        $this->form_validation->set_rules('job_manager_position', 'Должность', 'xss_clean');
         $this->form_validation->set_rules('phone', 'Телефон', 'required|xss_clean|min_length[2]|max_length[15]');
         $this->form_validation->set_rules('groups', 'Группа', 'xss_clean');
 
@@ -419,6 +428,7 @@ class Auth extends CI_Controller {
                 'last_name' => $this->input->post('last_name'),
                 'first_name' => $this->input->post('first_name'),
                 'middle_name' => $this->input->post('middle_name'),
+                'job_manager_position' => $this->input->post('job_manager_position'),
                 'email' => $this->input->post('email'),
                 'phone' => $this->input->post('phone'),);
             //Update the groups user belongs to
@@ -498,6 +508,14 @@ class Auth extends CI_Controller {
                 'id' => 'middle_name',
                 'type' => 'text',
                 'value' => $this->form_validation->set_value('username', $user->middle_name),
+                
+            );
+            
+            $this->data['job_manager_position'] = array(
+                'name' => 'job_manager_position',
+                'id' => 'job_manager_position',
+                'type' => 'text',
+                'value' => $this->form_validation->set_value('username', $user->job_manager_position),
                 
             );
 

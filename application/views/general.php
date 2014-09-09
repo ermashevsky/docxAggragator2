@@ -228,6 +228,24 @@
                                         <div class="accordion-inner">
                                             <!-- Text input-->
                                             <div class="control-group">
+                                                <label class="control-label" for="contact_person">ФИО контактного лица</label>
+                                                <div class="controls">
+                                                    <input id="contact_person" name="contact_person" type="text" placeholder="" class="input-large" required="">
+                                                    <p class="help-block" id="help-block-contact_person" style="display:none;">Введите ФИО контактного лица</p>
+                                                </div>
+                                            </div>
+
+                                            <!-- Text input-->
+                                            <div class="control-group">
+                                                <label class="control-label" for=job_contact_person">Должность контактного лица</label>
+                                                <div class="controls">
+                                                    <input id="job_contact_person" name="job_contact_person" type="text" placeholder="" class="input-large" required="">
+                                                    <p class="help-block" id="help-block-job_contact_person" style="display:none;">Введите должность контактного лица</p>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Text input-->
+                                            <div class="control-group">
                                                 <label class="control-label" for="phone_number">Телефон</label>
                                                 <div class="controls">
                                                     <input id="phone_number" name="phone_number" type="text" placeholder="" class="input-small" required="">

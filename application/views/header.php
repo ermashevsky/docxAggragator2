@@ -129,6 +129,15 @@
             $("#post_appartment").focus(function() {
                 $("#help-block-post_appartment").css('display', 'inline').fadeOut(3000);
             });
+            
+            $("#contact_person").focus(function() {
+                $("#help-block-contact_person").css('display', 'inline').fadeOut(3000);
+            });
+            
+            $("#job_contact_person").focus(function() {
+                $("#help-block-job_contact_person").css('display', 'inline').fadeOut(3000);
+            });
+            
 
             $('#contract_date').datepicker({
                 format: "dd.mm.yyyy",
@@ -232,12 +241,15 @@
             var post_office = $("#post_office").val();
             var post_box = $("#post_box").val();
             var post_appartment = $("#post_appartment").val();
+            var contact_person = $("#contact_person").val();
+            var job_contact_person = $("#job_contact_person").val();
 
             $.post('<?php echo site_url('/general/aggregateDocx'); ?>', {'contract_number': contract_number, 'contract_date': contract_date,
                 'organization_short_name': organization_short_name, 'organization_full_name': organization_full_name, 'boss_name': boss_name, 'boss_work_position': boss_work_position, 'basis_name': basis_name,
                 'address': address, 'inn_kpp': inn_kpp, 'current_account': current_account, 'bank': bank, 'correspondent_account': correspondent_account,
                 'bik': bik, 'phone_number': phone_number, 'email': email, 'post_zipcode':post_zipcode, 'post_city':post_city, 'post_street':post_street,
-                'post_house':post_house, 'post_house_block':post_house_block, 'post_office':post_office, 'post_box':post_box, 'post_appartment':post_appartment},
+                'post_house':post_house, 'post_house_block':post_house_block, 'post_office':post_office, 'post_box':post_box, 'post_appartment':post_appartment,
+                'contact_person':contact_person, 'job_contact_person':job_contact_person},
             function(data) {
 
                 var message = "Документ успешно сохранен под именем "+data;

@@ -21,6 +21,9 @@
                             <p>Отчество:<br />
                                 <?php echo form_input($middle_name); ?>
                             </p>
+                            <p>Должность:<br />
+                                <?php echo form_input($job_manager_position); ?>
+                            </p>
                             <p>Email:<br />
                                 <?php echo form_input($email); ?>
                             </p>
