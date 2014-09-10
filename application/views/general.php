@@ -46,7 +46,7 @@
                                 <label class="control-label" for="boss_name">ФИО руководителя</label>
                                 <div class="controls">
                                     <input id="boss_name" name="boss_name" type="text" placeholder="" class="input-large" required="">
-                                    <p class="help-block" id="help-block-boss_name" style="display:none;">Введите ФИО руководителя</p>
+                                    <p class="help-block" id="help-block-boss_name" style="display:none;">Введите ФИО руководителя полностью (<i>Иванов Иван Иванович</i>)</p>
                                 </div>
                             </div>
 
@@ -55,7 +55,7 @@
                                 <label class="control-label" for="boss_work_position">Должность</label>
                                 <div class="controls">
                                     <input id="boss_work_position" name="boss_work_position" type="text" placeholder="" class="input-large" required="">
-                                    <p class="help-block" id="help-block-boss_work_position" style="display:none;">Введите должность руководителя</p>
+                                    <p class="help-block" id="help-block-boss_work_position" style="display:none;">Введите должность руководителя (<i>Директор</i>)</p>
                                 </div>
                             </div>
 
@@ -64,7 +64,7 @@
                                 <label class="control-label" for="basis_name">Действует на основании</label>
                                 <div class="controls">
                                     <input id="basis_name" name="basis_name" type="text" placeholder="" class="input-large" required="">
-                                    <p class="help-block" id="help-block-basis_name" style="display:none;">Введите на основании чего действует</p>
+                                    <p class="help-block" id="help-block-basis_name" style="display:none;">Введите на основании чего действует (<i>Устава, Доверенности и прочее</i>)</p>
                                 </div>
                             </div>
 
@@ -81,7 +81,7 @@
                                             <div class="control-group">
                                                 <label class="control-label" for="inn_kpp">ИНН/КПП</label>
                                                 <div class="controls">
-                                                    <input id="inn_kpp" name="inn_kpp" type="text" placeholder="" class="input-large" required="">
+                                                    <input id="inn_kpp" name="inn_kpp" type="text" placeholder="" class="input-large" maxlength="20" pattern="^\d[0-9]?.*" required="">
                                                     <p class="help-block" id="help-block-inn_kpp" style="display:none;">Введите ИНН и КПП через дробь</p>
                                                 </div>
                                             </div>
@@ -90,7 +90,7 @@
                                             <div class="control-group">
                                                 <label class="control-label" for="current_account">Расчетный счет</label>
                                                 <div class="controls">
-                                                    <input id="current_account" name="current_account" type="text" placeholder="" class="input-large" required="">
+                                                    <input id="current_account" name="current_account" type="text" placeholder="" class="input-large" maxlength="20" pattern="^[0-9]{20}" required="">
                                                     <p class="help-block" id="help-block-current_account" style="display:none;">Введите номер расчетного счета</p>
                                                 </div>
                                             </div>
@@ -108,7 +108,7 @@
                                             <div class="control-group">
                                                 <label class="control-label" for="correspondent_account">Корреспондентский счет</label>
                                                 <div class="controls">
-                                                    <input id="correspondent_account" name="correspondent_account" type="text" placeholder="" class="input-large" required="">
+                                                    <input id="correspondent_account" name="correspondent_account" type="text" placeholder="" class="input-large" maxlength="20" pattern="^[ 0-9]{20}" required="">
                                                     <p class="help-block" id="help-block-correspondent_account" style="display:none;">Введите номер корреспондентского счета</p>
                                                 </div>
                                             </div>
@@ -117,7 +117,7 @@
                                             <div class="control-group">
                                                 <label class="control-label" for="bik">БИК</label>
                                                 <div class="controls">
-                                                    <input id="bik" name="bik" type="text" placeholder="" class="input-small" required="">
+                                                    <input id="bik" name="bik" type="text" placeholder="" class="input-small" maxlength="9" pattern="^[0-9]{9}" required="">
                                                     <p class="help-block" id="help-block-bik" style="display:none;">Введите номер БИК</p>
                                                 </div>
                                             </div>
@@ -257,7 +257,7 @@
                                             <div class="control-group">
                                                 <label class="control-label" for="email">E-mail</label>
                                                 <div class="controls">
-                                                    <input id="email" name="email" type="text" placeholder="" class="input-large" required="">
+                                                    <input id="email" name="email" type="email" placeholder="" class="input-large" required="">
                                                     <p class="help-block" id="help-block-email" style="display:none;">Введите адрес электронной почты</p>
                                                 </div>
                                             </div>

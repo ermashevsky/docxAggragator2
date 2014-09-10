@@ -50,92 +50,92 @@
     <script>
         $(function() {
             $("#contract_number").focus(function() {
-                $("#help-block-contract_number").css('display', 'inline').fadeOut(3000);
+                $("#help-block-contract_number").css('display', 'inline').fadeOut(5000);
             });
 
             $("#contract_date").focus(function() {
-                $("#help-block-contract_date").css('display', 'inline').fadeOut(3000);
+                $("#help-block-contract_date").css('display', 'inline').fadeOut(5000);
             });
 
             $("#organization_short_name").focus(function() {
-                $("#help-block-organization_short_name").css('display', 'inline').fadeOut(3000);
+                $("#help-block-organization_short_name").css('display', 'inline').fadeOut(5000);
             });
 
             $("#organization_full_name").focus(function() {
-                $("#help-block-organization_full_name").css('display', 'inline').fadeOut(3000);
+                $("#help-block-organization_full_name").css('display', 'inline').fadeOut(5000);
             });
 
             $("#boss_name").focus(function() {
-                $("#help-block-boss_name").css('display', 'inline').fadeOut(3000);
+                $("#help-block-boss_name").css('display', 'inline').fadeOut(5000);
             });
 
             $("#boss_work_position").focus(function() {
-                $("#help-block-boss_work_position").css('display', 'inline').fadeOut(3000);
+                $("#help-block-boss_work_position").css('display', 'inline').fadeOut(5000);
             });
 
             $("#basis_name").focus(function() {
-                $("#help-block-basis_name").css('display', 'inline').fadeOut(3000);
+                $("#help-block-basis_name").css('display', 'inline').fadeOut(5000);
             });
 
             $("#address").focus(function() {
-                $("#help-block-address").css('display', 'inline').fadeOut(3000);
+                $("#help-block-address").css('display', 'inline').fadeOut(5000);
             });
 
             $("#inn_kpp").focus(function() {
-                $("#help-block-inn_kpp").css('display', 'inline').fadeOut(3000);
+                $("#help-block-inn_kpp").css('display', 'inline').fadeOut(5000);
             });
 
             $("#current_account").focus(function() {
-                $("#help-block-current_account").css('display', 'inline').fadeOut(3000);
+                $("#help-block-current_account").css('display', 'inline').fadeOut(5000);
             });
 
             $("#correspondent_account").focus(function() {
-                $("#help-block-correspondent_account").css('display', 'inline').fadeOut(3000);
+                $("#help-block-correspondent_account").css('display', 'inline').fadeOut(5000);
             });
 
             $("#bik").focus(function() {
-                $("#help-block-bik").css('display', 'inline').fadeOut(3000);
+                $("#help-block-bik").css('display', 'inline').fadeOut(5000);
             });
 
             $("#phone_number").focus(function() {
-                $("#help-block-phone_number").css('display', 'inline').fadeOut(3000);
+                $("#help-block-phone_number").css('display', 'inline').fadeOut(5000);
             });
 
             $("#email").focus(function() {
-                $("#help-block-email").css('display', 'inline').fadeOut(3000);
+                $("#help-block-email").css('display', 'inline').fadeOut(5000);
             });
             
             $("#post_zipcode").focus(function() {
-                $("#help-block-post_zipcode").css('display', 'inline').fadeOut(3000);
+                $("#help-block-post_zipcode").css('display', 'inline').fadeOut(5000);
             });
             $("#post_city").focus(function() {
-                $("#help-block-post_city").css('display', 'inline').fadeOut(3000);
+                $("#help-block-post_city").css('display', 'inline').fadeOut(5000);
             });
             $("#post_street").focus(function() {
-                $("#help-block-post_street").css('display', 'inline').fadeOut(3000);
+                $("#help-block-post_street").css('display', 'inline').fadeOut(5000);
             });
             $("#post_house").focus(function() {
-                $("#help-block-post_house").css('display', 'inline').fadeOut(3000);
+                $("#help-block-post_house").css('display', 'inline').fadeOut(5000);
             });
             $("#post_house_block").focus(function() {
-                $("#help-block-post_house_block").css('display', 'inline').fadeOut(3000);
+                $("#help-block-post_house_block").css('display', 'inline').fadeOut(5000);
             });
             $("#post_office").focus(function() {
-                $("#help-block-post_office").css('display', 'inline').fadeOut(3000);
+                $("#help-block-post_office").css('display', 'inline').fadeOut(5000);
             });
             $("#post_box").focus(function() {
-                $("#help-block-post_box").css('display', 'inline').fadeOut(3000);
+                $("#help-block-post_box").css('display', 'inline').fadeOut(5000);
             });
             $("#post_appartment").focus(function() {
-                $("#help-block-post_appartment").css('display', 'inline').fadeOut(3000);
+                $("#help-block-post_appartment").css('display', 'inline').fadeOut(5000);
             });
             
             $("#contact_person").focus(function() {
-                $("#help-block-contact_person").css('display', 'inline').fadeOut(3000);
+                $("#help-block-contact_person").css('display', 'inline').fadeOut(5000);
             });
             
             $("#job_contact_person").focus(function() {
-                $("#help-block-job_contact_person").css('display', 'inline').fadeOut(3000);
+                $("#help-block-job_contact_person").css('display', 'inline').fadeOut(5000);
             });
             
 

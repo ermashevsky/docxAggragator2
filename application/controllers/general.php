@@ -66,6 +66,30 @@ class General extends CI_Controller {
         }
     }
 
+    function convertDoc2Jpg($DocFilename) {
+        // starting word
+        $word = new COM("word.application") or die("ERROR: Unable to instantiate Word");
+        echo "Loaded Word, version {$word->Version}\n";
+
+        //bring it to front
+        $word->Visible = 1;
+        $data['user'] = $this->ion_auth->user($this->session->userdata('user_id'))->row();
+        $path = 'uploads/' . $data['user']->username . '/';
+        //Set $FilePath and $DocFileName
+        $FilePath = site_url($path);
+
+        $stat = $word->Documents->Open($DocFilename) or die("ERROR: Could not open Word Doc");
+
+        $word->Documents[1]->SaveAs($FilePath."".$DocFilename, 17);
+        $word->Documents[1]->Close();
+
+        //closing word
+        $word->Quit();
+
+        //free the object
+        $word = null;
+    }
+
     function delete_user() {
         $id = $this->input->post('id');
         $this->load->model('general_model');
@@ -202,23 +226,26 @@ class General extends CI_Controller {
 
         $boss_name_genetive = $this->getNewFormText($this->input->post('boss_name'), 1);
         $boss_work_position_genetive = $this->getNewFormText($this->input->post('boss_work_position'), 1);
-        $basis_name_genetive = $this->getNewFormText($this->input->post('basis_name'), 1);
+        $basis_name_genetive = $this->input->post('basis_name');
         $boss_name_short = preg_replace('/(\w+) (\w)\w+ (\w)\w+/iu', '$2.$3.$1', $this->input->post('boss_name'));
         $formattedDate = $this->rus_date("j F Y ", strtotime($this->input->post('contract_date')));
-
+        $organization_short_name = $this->rus_quote($this->input->post('organization_short_name'));
+        $organization_full_name = $this->rus_quote($this->input->post('organization_full_name'));
+        $bank = $this->rus_quote($this->input->post('bank'));
+        
         //Список параметров
         $params = array(
             '{CONTRACT_NUMBER}' => $this->input->post('contract_number'),
             '{CONTRACT_DATE}' => mb_strtolower($formattedDate),
-            '{ORGANIZATION_SHORT_NAME}' => $this->input->post('organization_short_name'),
-            '{ORGANIZATION_FULL_NAME}' => $this->input->post('organization_full_name'),
+            '{ORGANIZATION_SHORT_NAME}' => $organization_short_name,
+            '{ORGANIZATION_FULL_NAME}' => $organization_full_name,
             '{BOSS_NAME}' => $boss_name_short,
             '{BOSS_WORK_POSITION}' => $this->input->post('boss_work_position'),
             '{BASIS_NAME}' => $this->input->post('basis_name'),
             '{ADDRESS}' => $this->input->post('address'),
             '{INN_KPP}' => $this->input->post('inn_kpp'),
             '{CURRENT_ACCOUNT}' => $this->input->post('current_account'),
-            '{BANK}' => $this->input->post('bank'),
+            '{BANK}' => $bank,
             '{CORRESPONDENT_ACCOUNT}' => $this->input->post('correspondent_account'),
             '{BIK}' => $this->input->post('bik'),
             '{PHONE_NUMBER}' => $this->input->post('phone_number'),
@@ -252,16 +279,30 @@ class General extends CI_Controller {
 
         $documentXml = $zip->getFromName('word/document.xml');
 
-//Заменяем все найденные переменные в файле на значения
+        //Заменяем все найденные переменные в файле на значения
         $documentXml_replaced = str_replace(array_keys($params), array_values($params), $documentXml);
 
         $zip->deleteName('word/document.xml');
         $zip->addFromString('word/document.xml', $documentXml_replaced);
 
-//Закрываем и сохраняем архив
+        //Закрываем и сохраняем архив
         $zip->close();
-
+        //        $this->convertDoc2Jpg($newfile);
+        
         echo json_encode($f_name);
+    }
+
+    function rus_quote($s) {
+        $s = preg_replace(
+                array(
+            "/(^|\s+|\(|\<|\{\[\|)\"/ms",
+            "/\"(\s+|\.|\,|\!|\?|\)|\>|\}|\]|\||$)/ms",
+                ), array(
+            "\\1&#171;",
+            "&#187;\\1",
+                ), $s
+        );
+        return $s;
     }
 
     function rus_date() {

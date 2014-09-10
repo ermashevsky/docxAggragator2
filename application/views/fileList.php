@@ -17,7 +17,7 @@
                         <tbody>
                     <?php
                     $structure = filter_input(INPUT_SERVER, 'DOCUMENT_ROOT') . '/uploads/' . $user->username . '/';
-
+                    date_default_timezone_set('Europe/Moscow');
                     if (!file_exists($structure)) {
                         mkdir($structure, 0777, true);
                     }
@@ -31,7 +31,7 @@
                         if($fileinfo->getType()==='file'){
                             echo '<tr>'
                                     . '<td>'.$n++.'</td><td>'.$fileinfo->getFilename().'</td>'
-                                    . '<td>'.date("d.m.Y H:m",$fileinfo->getMTime()).'</td>'
+                                    . '<td>'.date("d.m.Y H:i:s",$fileinfo->getMTime()).'</td>'
                                     . '<td>'.General::formatSizeUnits($fileinfo->getSize()).'</td>';
                             echo "<td><a href='#' class='btn btn-small' onclick=sendMail('".$structure.$fileinfo->getFilename()."'); return false;><i class='icon-envelope'> </i>Отправить на почту</a>";
                             echo '</td><td><a href="'.site_url($path.$fileinfo->getFilename()).'" class="btn btn-small"><i class="icon-download-alt"> </i>Скачать файл</a></td>';
