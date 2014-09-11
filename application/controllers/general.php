@@ -113,7 +113,7 @@ class General extends CI_Controller {
         $config['smtp_timeout'] = '30';
 
         $config['charset'] = 'utf-8';
-        $config['crlf'] = "\r\n";
+        $config['crlf'] = "\n";
         $config['newline'] = "\r\n";
         $config['wordwrap'] = TRUE;
 
