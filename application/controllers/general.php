@@ -232,7 +232,16 @@ class General extends CI_Controller {
         $organization_short_name = $this->rus_quote($this->input->post('organization_short_name'));
         $organization_full_name = $this->rus_quote($this->input->post('organization_full_name'));
         $bank = $this->rus_quote($this->input->post('bank'));
+        $fio_manager = $this->input->post('fio_manager');
+        $job_manager = $this->input->post('job_position');
         
+        if($fio_manager !=="" && $job_manager !==""){
+            $manager = $fio_manager;
+            $job = $job_manager;
+        }else{
+            $manager = $data['user']->last_name . " " . $data['user']->first_name . " " . $data['user']->middle_name;
+            $job = $data['user']->job_manager_position;
+        }
         //Список параметров
         $params = array(
             '{CONTRACT_NUMBER}' => $this->input->post('contract_number'),
@@ -261,8 +270,8 @@ class General extends CI_Controller {
             '{POST_OFFICE}' => $this->input->post('post_office'),
             '{POST_BOX}' => $this->input->post('post_box'),
             '{POST_APPARTMENT}' => $this->input->post('post_appartment'),
-            '{MANAGER}' => $data['user']->last_name . " " . $data['user']->first_name . " " . $data['user']->middle_name,
-            '{JOB_MANAGER_POSITION}' => $data['user']->job_manager_position,
+            '{MANAGER}' => $manager,
+            '{JOB_MANAGER_POSITION}' => $job,
             '{CONTACT_PERSON}' => $this->input->post('contact_person'),
             '{JOB_CONTACT_PERSON}' => $this->input->post('job_contact_person'),
         );

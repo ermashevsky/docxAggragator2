@@ -264,6 +264,33 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFive">
+                                            Заказ оформил
+                                        </a>
+                                    </div>
+                                    <div id="collapseFive"class="accordion-body collapse">
+                                        <div class="accordion-inner">
+                                            <!-- Text input-->
+                                            <div class="control-group">
+                                                <label class="control-label" for="fio_manager">ФИО сотрудника</label>
+                                                <div class="controls">
+                                                    <input id="fio_manager" name="fio_manager" type="text" placeholder="" class="input-large" required="">
+                                                    <p class="help-block" id="help-block-fio_manager" style="display:none;">Введите ФИО сотрудника оформившего договор</p>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="control-group">
+                                                <label class="control-label" for="job_position">Должность сотрудника</label>
+                                                <div class="controls">
+                                                    <input id="job_position" name="job_position" type="text" placeholder="" class="input-large" required="">
+                                                    <p class="help-block" id="help-block-job_position" style="display:none;">Введите должность сотрудника оформившего договор</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <!-- Button (Double) -->
                             <div class="control-group">

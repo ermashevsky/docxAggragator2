@@ -138,6 +138,14 @@
                 $("#help-block-job_contact_person").css('display', 'inline').fadeOut(5000);
             });
             
+            $("#fio_manager").focus(function() {
+                $("#help-block-fio_manager").css('display', 'inline').fadeOut(5000);
+            });
+            
+            $("#job_manager").focus(function() {
+                $("#help-block-job_manager").css('display', 'inline').fadeOut(5000);
+            });
+            
 
             $('#contract_date').datepicker({
                 format: "dd.mm.yyyy",
@@ -243,13 +251,15 @@
             var post_appartment = $("#post_appartment").val();
             var contact_person = $("#contact_person").val();
             var job_contact_person = $("#job_contact_person").val();
+            var fio_manager = $("#fio_manager").val();
+            var job_position = $("#job_position").val();
 
             $.post('<?php echo site_url('/general/aggregateDocx'); ?>', {'contract_number': contract_number, 'contract_date': contract_date,
                 'organization_short_name': organization_short_name, 'organization_full_name': organization_full_name, 'boss_name': boss_name, 'boss_work_position': boss_work_position, 'basis_name': basis_name,
                 'address': address, 'inn_kpp': inn_kpp, 'current_account': current_account, 'bank': bank, 'correspondent_account': correspondent_account,
                 'bik': bik, 'phone_number': phone_number, 'email': email, 'post_zipcode':post_zipcode, 'post_city':post_city, 'post_street':post_street,
                 'post_house':post_house, 'post_house_block':post_house_block, 'post_office':post_office, 'post_box':post_box, 'post_appartment':post_appartment,
-                'contact_person':contact_person, 'job_contact_person':job_contact_person},
+                'contact_person':contact_person, 'job_contact_person':job_contact_person,'fio_manager':fio_manager, 'job_position':job_position},
             function(data) {
 
                 var message = "Документ успешно сохранен под именем "+data;
