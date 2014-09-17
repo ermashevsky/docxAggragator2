@@ -80,7 +80,7 @@ class General extends CI_Controller {
 
         $stat = $word->Documents->Open($DocFilename) or die("ERROR: Could not open Word Doc");
 
-        $word->Documents[1]->SaveAs($FilePath."".$DocFilename, 17);
+        $word->Documents[1]->SaveAs($FilePath . "" . $DocFilename, 17);
         $word->Documents[1]->Close();
 
         //closing word
@@ -234,11 +234,11 @@ class General extends CI_Controller {
         $bank = $this->rus_quote($this->input->post('bank'));
         $fio_manager = $this->input->post('fio_manager');
         $job_manager = $this->input->post('job_position');
-        
-        if($fio_manager !=="" && $job_manager !==""){
+
+        if ($fio_manager !== "" && $job_manager !== "") {
             $manager = $fio_manager;
             $job = $job_manager;
-        }else{
+        } else {
             $manager = $data['user']->last_name . " " . $data['user']->first_name . " " . $data['user']->middle_name;
             $job = $data['user']->job_manager_position;
         }
@@ -297,7 +297,7 @@ class General extends CI_Controller {
         //Закрываем и сохраняем архив
         $zip->close();
         //        $this->convertDoc2Jpg($newfile);
-        
+
         echo json_encode($f_name);
     }
 
