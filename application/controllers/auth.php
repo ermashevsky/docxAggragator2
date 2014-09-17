@@ -42,7 +42,6 @@ class Auth extends CI_Controller {
         }
     }
 
-    
     //log the user in
     function login() {
         $data['title'] = "Login";
@@ -347,25 +346,25 @@ class Auth extends CI_Controller {
                 'type' => 'text',
                 'value' => $this->form_validation->set_value('email'),
             );
-            
+
             $data['last_name'] = array('name' => 'last_name',
                 'id' => 'last_name',
                 'type' => 'text',
                 'value' => $this->form_validation->set_value('last_name'),
             );
-            
+
             $data['first_name'] = array('name' => 'first_name',
                 'id' => 'first_name',
                 'type' => 'text',
                 'value' => $this->form_validation->set_value('first_name'),
             );
-            
+
             $data['middle_name'] = array('name' => 'middle_name',
                 'id' => 'middle_name',
                 'type' => 'text',
                 'value' => $this->form_validation->set_value('middle_name'),
             );
-            
+
             $data['job_manager_position'] = array('name' => 'job_manager_position',
                 'id' => 'job_manager_position',
                 'type' => 'text',
@@ -399,7 +398,6 @@ class Auth extends CI_Controller {
 //                        $this->load->view('auth/footer');
         }
     }
-
 
     function edit_user($id) {
         $data['title'] = "Редактирование профиля пользователя";
@@ -486,37 +484,33 @@ class Auth extends CI_Controller {
                 'value' => $this->form_validation->set_value('username', $user->username),
                 'readonly' => 'true',
             );
-            
+
             $this->data['last_name'] = array(
                 'name' => 'last_name',
                 'id' => 'last_name',
                 'type' => 'text',
                 'value' => $this->form_validation->set_value('username', $user->last_name),
-                
             );
-            
+
             $this->data['first_name'] = array(
                 'name' => 'first_name',
                 'id' => 'first_name',
                 'type' => 'text',
                 'value' => $this->form_validation->set_value('username', $user->first_name),
-                
             );
-            
+
             $this->data['middle_name'] = array(
                 'name' => 'middle_name',
                 'id' => 'middle_name',
                 'type' => 'text',
                 'value' => $this->form_validation->set_value('username', $user->middle_name),
-                
             );
-            
+
             $this->data['job_manager_position'] = array(
                 'name' => 'job_manager_position',
                 'id' => 'job_manager_position',
                 'type' => 'text',
                 'value' => $this->form_validation->set_value('username', $user->job_manager_position),
-                
             );
 
             $this->data['email'] = array(
@@ -581,19 +575,19 @@ class Auth extends CI_Controller {
             $this->load->view('auth/mailsettings2');
         }
     }
-    
-    function updateSmtpParameters(){
-        
+
+    function updateSmtpParameters() {
+
         $id = $this->input->post('id');
         $smtp_host = $this->input->post('smtp_host');
         $smtp_port = $this->input->post('smtp_port');
         $smtp_user = $this->input->post('smtp_user');
         $smtp_pass = $this->input->post('smtp_pass');
         $smtp_timeout = $this->input->post('smtp_timeout');
-        
-        
+
+
         $this->load->model('general_model');
-        $this->general_model->updateSmtpParameters($id,$smtp_host,$smtp_port,$smtp_user,$smtp_pass,$smtp_timeout);
+        $this->general_model->updateSmtpParameters($id, $smtp_host, $smtp_port, $smtp_user, $smtp_pass, $smtp_timeout);
     }
 
     function delete_user($id) {
