@@ -15,7 +15,8 @@
         <script src="/assets/js/bootstrap-datepicker.js"></script>
         <script src="/assets/js/locales/bootstrap-datepicker.ru.js"></script>
         <script src="/assets/js/pnotify.core.js"></script>
-        
+        <script src="/assets/js/jdoc.0.5.0.js"></script>
+
         <link href="/assets/css/bootstrap.css" rel="stylesheet" media="screen">
         <link href="/assets/css/bootstrap-responsive.css" rel="stylesheet">
         <link href="/assets/css/bootstrap-button.css" rel="stylesheet">
@@ -48,104 +49,104 @@
         </style>
     </head>
     <script>
-        $(function() {
-            $("#contract_number").focus(function() {
+        $(function () {
+            $("#contract_number").focus(function () {
                 $("#help-block-contract_number").css('display', 'inline').fadeOut(5000);
             });
 
-            $("#contract_date").focus(function() {
+            $("#contract_date").focus(function () {
                 $("#help-block-contract_date").css('display', 'inline').fadeOut(5000);
             });
 
-            $("#organization_short_name").focus(function() {
+            $("#organization_short_name").focus(function () {
                 $("#help-block-organization_short_name").css('display', 'inline').fadeOut(5000);
             });
 
-            $("#organization_full_name").focus(function() {
+            $("#organization_full_name").focus(function () {
                 $("#help-block-organization_full_name").css('display', 'inline').fadeOut(5000);
             });
 
-            $("#boss_name").focus(function() {
+            $("#boss_name").focus(function () {
                 $("#help-block-boss_name").css('display', 'inline').fadeOut(5000);
             });
 
-            $("#boss_work_position").focus(function() {
+            $("#boss_work_position").focus(function () {
                 $("#help-block-boss_work_position").css('display', 'inline').fadeOut(5000);
             });
 
-            $("#basis_name").focus(function() {
+            $("#basis_name").focus(function () {
                 $("#help-block-basis_name").css('display', 'inline').fadeOut(5000);
             });
 
-            $("#address").focus(function() {
+            $("#address").focus(function () {
                 $("#help-block-address").css('display', 'inline').fadeOut(5000);
             });
 
-            $("#inn_kpp").focus(function() {
+            $("#inn_kpp").focus(function () {
                 $("#help-block-inn_kpp").css('display', 'inline').fadeOut(5000);
             });
 
-            $("#current_account").focus(function() {
+            $("#current_account").focus(function () {
                 $("#help-block-current_account").css('display', 'inline').fadeOut(5000);
             });
 
-            $("#correspondent_account").focus(function() {
+            $("#correspondent_account").focus(function () {
                 $("#help-block-correspondent_account").css('display', 'inline').fadeOut(5000);
             });
 
-            $("#bik").focus(function() {
+            $("#bik").focus(function () {
                 $("#help-block-bik").css('display', 'inline').fadeOut(5000);
             });
 
-            $("#phone_number").focus(function() {
+            $("#phone_number").focus(function () {
                 $("#help-block-phone_number").css('display', 'inline').fadeOut(5000);
             });
 
-            $("#email").focus(function() {
+            $("#email").focus(function () {
                 $("#help-block-email").css('display', 'inline').fadeOut(5000);
             });
-            
-            $("#post_zipcode").focus(function() {
+
+            $("#post_zipcode").focus(function () {
                 $("#help-block-post_zipcode").css('display', 'inline').fadeOut(5000);
             });
-            $("#post_city").focus(function() {
+            $("#post_city").focus(function () {
                 $("#help-block-post_city").css('display', 'inline').fadeOut(5000);
             });
-            $("#post_street").focus(function() {
+            $("#post_street").focus(function () {
                 $("#help-block-post_street").css('display', 'inline').fadeOut(5000);
             });
-            $("#post_house").focus(function() {
+            $("#post_house").focus(function () {
                 $("#help-block-post_house").css('display', 'inline').fadeOut(5000);
             });
-            $("#post_house_block").focus(function() {
+            $("#post_house_block").focus(function () {
                 $("#help-block-post_house_block").css('display', 'inline').fadeOut(5000);
             });
-            $("#post_office").focus(function() {
+            $("#post_office").focus(function () {
                 $("#help-block-post_office").css('display', 'inline').fadeOut(5000);
             });
-            $("#post_box").focus(function() {
+            $("#post_box").focus(function () {
                 $("#help-block-post_box").css('display', 'inline').fadeOut(5000);
             });
-            $("#post_appartment").focus(function() {
+            $("#post_appartment").focus(function () {
                 $("#help-block-post_appartment").css('display', 'inline').fadeOut(5000);
             });
-            
-            $("#contact_person").focus(function() {
+
+            $("#contact_person").focus(function () {
                 $("#help-block-contact_person").css('display', 'inline').fadeOut(5000);
             });
-            
-            $("#job_contact_person").focus(function() {
+
+            $("#job_contact_person").focus(function () {
                 $("#help-block-job_contact_person").css('display', 'inline').fadeOut(5000);
             });
-            
-            $("#fio_manager").focus(function() {
+
+            $("#fio_manager").focus(function () {
                 $("#help-block-fio_manager").css('display', 'inline').fadeOut(5000);
             });
-            
-            $("#job_manager").focus(function() {
+
+            $("#job_manager").focus(function () {
                 $("#help-block-job_manager").css('display', 'inline').fadeOut(5000);
             });
-            
+
 
             $('#contract_date').datepicker({
                 format: "dd.mm.yyyy",
@@ -153,12 +154,12 @@
                 language: "ru",
                 autoclose: true
             });
-            $(function() {
-                $('#myTab a').click(function(e) {
+            $(function () {
+                $('#myTab a').click(function (e) {
                     e.preventDefault();
                     $(this).tab('show');
                 });
-                $('#myTab1 a').click(function(e) {
+                $('#myTab1 a').click(function (e) {
                     e.preventDefault();
                     $(this).tab('show');
                 });
@@ -172,10 +173,10 @@
             var value = sel.value;
             console.info(value);
             $.post('<?php echo site_url('/general/getTariffList'); ?>', {'id_assortment': value},
-            function(data) {
+            function (data) {
                 console.info(data);
                 $('#tariffList').empty();
-                $.each(data, function(key, value) {
+                $.each(data, function (key, value) {
                     $('#tariffList')
                             .append($("<option></option>")
                                     .attr("value", key)
@@ -189,10 +190,10 @@
             var value = sel.value;
             console.info(value);
             $.post('<?php echo site_url('/general/getPosition'); ?>', {'id': value},
-            function(data) {
+            function (data) {
                 console.info(data);
                 $('#jobPos').empty();
-                $.each(data, function(key, value) {
+                $.each(data, function (key, value) {
                     $('#jobPos')
                             .append($("<option></option>")
                                     .attr("value", key)
@@ -215,14 +216,29 @@
             var c = confirm('Вы действительно хотите удалить строку?');
             if (c) {
                 $(element).closest('tr').find('td').fadeOut('slow',
-                        function(here) {
+                        function (here) {
                             $(here).closest("tr").remove();
                         });
             }
             return false;
 
         }
+        function viewDocx(filename) {
+            
+            var jd = new jDoc();
+            jd.read(filename, {
+                    success: function (parsedFile) {
+                        var canvas = document.getElementById("pages-container");
+                        canvas.innerHTML = "";
+                        canvas.appendChild(parsedFile.html());
+                    },
 
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+        }
+        
         function submit_form() {
 
             var contract_number = $("#contract_number").val();
@@ -240,7 +256,7 @@
             var bik = $("#bik").val();
             var phone_number = $("#phone_number").val();
             var email = $("#email").val();
-            
+
             var post_zipcode = $("#post_zipcode").val();
             var post_city = $("#post_city").val();
             var post_street = $("#post_street").val();
@@ -254,18 +270,30 @@
             var fio_manager = $("#fio_manager").val();
             var job_position = $("#job_position").val();
 
+            var actual_city = $("#actual_city").val();
+            var actual_street = $("#actual_street").val();
+            var actual_house = $("#actual_house").val();
+            var actual_house_block = $("#actual_house_block").val();
+            var actual_office = $("#actual_office").val();
+            var actual_box = $("#actual_box").val();
+            var actual_appartment = $("#actual_appartment").val();
+
+
             $.post('<?php echo site_url('/general/aggregateDocx'); ?>', {'contract_number': contract_number, 'contract_date': contract_date,
                 'organization_short_name': organization_short_name, 'organization_full_name': organization_full_name, 'boss_name': boss_name, 'boss_work_position': boss_work_position, 'basis_name': basis_name,
                 'address': address, 'inn_kpp': inn_kpp, 'current_account': current_account, 'bank': bank, 'correspondent_account': correspondent_account,
-                'bik': bik, 'phone_number': phone_number, 'email': email, 'post_zipcode':post_zipcode, 'post_city':post_city, 'post_street':post_street,
-                'post_house':post_house, 'post_house_block':post_house_block, 'post_office':post_office, 'post_box':post_box, 'post_appartment':post_appartment,
-                'contact_person':contact_person, 'job_contact_person':job_contact_person,'fio_manager':fio_manager, 'job_position':job_position},
-            function(data) {
+                'bik': bik, 'phone_number': phone_number, 'email': email, 'post_zipcode': post_zipcode, 'post_city': post_city, 'post_street': post_street,
+                'post_house': post_house, 'post_house_block': post_house_block, 'post_office': post_office, 'post_box': post_box, 'post_appartment': post_appartment,
+                'contact_person': contact_person, 'job_contact_person': job_contact_person, 'fio_manager': fio_manager, 'job_position': job_position,
+                'actual_city': actual_city, 'actual_street': actual_street, 'actual_house': actual_house, 'actual_house_block': actual_house_block,
+                'actual_office': actual_office, 'actual_box': actual_box, 'actual_appartment': actual_appartment
+            },
+            function (data) {
 
-                var message = "Документ успешно сохранен под именем "+data;
-                notify(message,"success");
-                setTimeout("document.location.href='http://docxaggregate.lcl/general/fileList'", 5000);
-                
+                var message = "Документ успешно сохранен под именем " + data;
+                notify(message, "success");
+                //setTimeout("document.location.href='http://docxaggregate.lcl/general/fileList'", 5000);
+
             }, 'json');
 
         }
@@ -283,9 +311,9 @@
                 addclass: "brand"
             });
         }
-        
-        function sendMail(attachment,email){
-            if(!email){
+
+        function sendMail(attachment, email) {
+            if (!email) {
                 bootbox.dialog({
                     message: "<label for='email' >Введите адрес электронной почты <br/><input type='text' name='email' id='email_value' value='' /></label>",
                     title: "Отправка файла на почту",
@@ -293,61 +321,61 @@
                         success: {
                             label: "OK",
                             className: "btn-success btn-small",
-                            callback: function() {
+                            callback: function () {
                                 var mail = $('#email_value').val();
 
-                                if(mail){
-                                $.post('<?php echo site_url('/general/sendMail'); ?>', {'attachment': attachment,'mail':mail},
-                                function(data) {
-                                    notify("Письмо отправлено. Проверьте адрес электронной почты "+mail+"","info");
-                                },'json');
-                                //window.location.reload();
-                            }else{
-                                notify("Письмо отправлено небыло. Введите адрес электронной почты","error");
-                            }
-                            
+                                if (mail) {
+                                    $.post('<?php echo site_url('/general/sendMail'); ?>', {'attachment': attachment, 'mail': mail},
+                                    function (data) {
+                                        notify("Письмо отправлено. Проверьте адрес электронной почты " + mail + "", "info");
+                                    }, 'json');
+                                    //window.location.reload();
+                                } else {
+                                    notify("Письмо отправлено небыло. Введите адрес электронной почты", "error");
+                                }
+
                             }
                         },
                         danger: {
                             label: "Отмена",
                             className: "btn-danger btn-small",
-                            callback: function() {
+                            callback: function () {
                                 bootbox.hideAll();
-                                
+
                             }
                         }
                     }
                 });
             }
         }
-        
-        function deleteFile(file, name){
-        
+
+        function deleteFile(file, name) {
+
             bootbox.dialog({
-                    message: "Вы действительно хотите удалить файл?",
-                    title: "Удаление файла",
-                    buttons: {
-                        success: {
-                            label: "Да",
-                            className: "btn-success btn-small",
-                            callback: function() {
+                message: "Вы действительно хотите удалить файл?",
+                title: "Удаление файла",
+                buttons: {
+                    success: {
+                        label: "Да",
+                        className: "btn-success btn-small",
+                        callback: function () {
                             $.post('<?php echo site_url('/general/deleteFile'); ?>', {'file': file},
-                                function(data) {
-                                    notify("Файл "+name+" удален","success");
-                                    setTimeout("document.location.reload()", 3000);
-                                });
-                            }
-                        },
-                        danger: {
-                            label: "Отмена",
-                            className: "btn-danger btn-small",
-                            callback: function() {
-                                bootbox.hideAll();
-                                
-                            }
+                            function (data) {
+                                notify("Файл " + name + " удален", "success");
+                                setTimeout("document.location.reload()", 3000);
+                            });
+                        }
+                    },
+                    danger: {
+                        label: "Отмена",
+                        className: "btn-danger btn-small",
+                        callback: function () {
+                            bootbox.hideAll();
+
                         }
                     }
-                });
+                }
+            });
         }
     </script>
 </head>
@@ -371,15 +399,15 @@
                         <li><a href="/"><i class="icon-home icon-white"> </i>Главная</a></li>
                         <li><a href="/general/fileList"><i class="icon-home icon-list-alt"> </i>Список договоров</a></li>
                         <?php
-                            if ($this->ion_auth->is_admin()) {
-                                ?>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-wrench icon-white"> </i>Админка<b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="/auth/"><i class="icon-user icon-white"> </i>Пользователи</a></li>
-                                    </ul>
-                                </li>          
-                            <?php } ?>          
+                        if ($this->ion_auth->is_admin()) {
+                            ?>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-wrench icon-white"> </i>Админка<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/auth/"><i class="icon-user icon-white"> </i>Пользователи</a></li>
+                                </ul>
+                            </li>          
+                        <?php } ?>          
 
                         <li class="pull-right"><a href="/auth/logout"><i class="icon-arrow-right icon-white"> </i>Выход</a></li>
 

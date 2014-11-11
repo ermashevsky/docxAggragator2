@@ -145,6 +145,66 @@
                                 </div>
                                 <div class="accordion-group">
                                     <div class="accordion-heading">
+                                        <a class="accordion-toggle"data-toggle="collapse"data-parent="#accordion2" href="#collapseSix">
+                                            Фактический адрес
+                                        </a>
+                                    </div>
+                                    <div id="collapseSix"class="accordion-body collapse">
+                                        <div class="accordion-inner">
+
+                                            <!-- Text input-->
+                                            <div class="control-group">
+                                                <label class="control-label" for="actual_city">Город</label>
+                                                <div class="controls">
+                                                    <input id="actual_city" name="actual_city" type="text" placeholder="" class="input-large" required="">
+                                                    <p class="help-block" id="help-block-actual_city" style="display:none;">Введите название города</p>
+                                                </div>
+                                            </div>
+                                            <!-- Text input-->
+                                            <div class="control-group">
+                                                <label class="control-label" for="actual_street">Улица</label>
+                                                <div class="controls">
+                                                    <input id="actual_street" name="actual_street" type="text" placeholder="" class="input-large" required="">
+                                                    <p class="help-block" id="help-block-actual_street" style="display:none;">Введите название улицы</p>
+                                                </div>
+                                            </div>
+                                            <!-- Text input-->
+                                            <div class="control-group">
+                                                <label class="control-label" for="actual_house">Дом</label>
+                                                <div class="controls">
+                                                    <input id="actual_house" name="actual_house" type="text" placeholder="" class="input-large" required="">
+                                                    <p class="help-block" id="help-block-actual_house" style="display:none;">Введите номер дома</p>
+                                                </div>
+                                            </div>
+                                            <!-- Text input-->
+                                            <div class="control-group">
+                                                <label class="control-label" for="actual_house_block">Корпус</label>
+                                                <div class="controls">
+                                                    <input id="actual_house_block" name="actual_house_block" type="text" placeholder="" class="input-large" required="">
+                                                    <p class="help-block" id="help-block-actual_house_block" style="display:none;">Введите номер корпуса</p>
+                                                </div>
+                                            </div>
+                                            <!-- Text input-->
+                                            <div class="control-group">
+                                                <label class="control-label" for="actual_office">Офис</label>
+                                                <div class="controls">
+                                                    <input id="actual_office" name="actual_office" type="text" placeholder="" class="input-large" required="">
+                                                    <p class="help-block" id="help-block-actual_office" style="display:none;">Введите номер офиса</p>
+                                                </div>
+                                            </div>
+                                            <!-- Text input-->
+                                            <div class="control-group">
+                                                <label class="control-label" for="actual_appartment">Квартира</label>
+                                                <div class="controls">
+                                                    <input id="actual_appartment" name="actual_appartment" type="text" placeholder="" class="input-large" required="">
+                                                    <p class="help-block" id="help-block-actual_appartment" style="display:none;">Введите номер квартиры</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-group">
+                                    <div class="accordion-heading">
                                         <a class="accordion-toggle"data-toggle="collapse"data-parent="#accordion2" href="#collapseThree">
                                             Почтовый адрес
                                         </a>

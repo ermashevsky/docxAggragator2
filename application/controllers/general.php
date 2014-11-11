@@ -207,8 +207,9 @@ class General extends CI_Controller {
         return false;
     }
 
+    
     public function aggregateDocx() {
-
+        date_default_timezone_set('Europe/Kaliningrad');
         $data['user'] = $this->ion_auth->user($this->session->userdata('user_id'))->row();
         $data['group'] = $this->ion_auth->get_users_groups($this->session->userdata('user_id'))->row();
         $structure = filter_input(INPUT_SERVER, 'DOCUMENT_ROOT') . '/uploads/' . $data['user']->username . '/';
@@ -227,8 +228,24 @@ class General extends CI_Controller {
         $boss_name_genetive = $this->getNewFormText($this->input->post('boss_name'), 1);
         $boss_work_position_genetive = $this->getNewFormText($this->input->post('boss_work_position'), 1);
         $basis_name_genetive = $this->input->post('basis_name');
-        $boss_name_short = preg_replace('/(\w+) (\w)\w+ (\w)\w+/iu', '$2.$3.$1', $this->input->post('boss_name'));
-        $formattedDate = $this->rus_date("j F Y ", strtotime($this->input->post('contract_date')));
+        $boss_name_short = preg_replace('/(\w+) (\w)\w+ (\w)\w+/iu', '$2.$3. $1', $this->input->post('boss_name'));
+        $nonFormatDate = $this->rus_date("j F Y ", strtotime($this->input->post('contract_date')));
+        //echo $formattedDate;
+        $pieces = explode(" ", $nonFormatDate);
+        
+        $part_number = 0+$pieces[0];
+        $part_month = $pieces[1];
+        $part_year = $pieces[2];
+        echo gettype($part_number);
+        
+        if($part_number < 10){
+            $strDate = '"0'.$pieces[0].'" '.$pieces[1]." ".$pieces[2];
+            $formattedDate = $this->rus_quote($strDate);
+        }else{
+            $strDate = $pieces[0]." ".$pieces[1]." ".$pieces[2];
+            $formattedDate = $this->rus_quote($strDate);
+        }
+        
         $organization_short_name = $this->rus_quote($this->input->post('organization_short_name'));
         $organization_full_name = $this->rus_quote($this->input->post('organization_full_name'));
         $bank = $this->rus_quote($this->input->post('bank'));
@@ -270,6 +287,14 @@ class General extends CI_Controller {
             '{POST_OFFICE}' => $this->input->post('post_office'),
             '{POST_BOX}' => $this->input->post('post_box'),
             '{POST_APPARTMENT}' => $this->input->post('post_appartment'),
+            '{ACTUAL_CITY}' => $this->input->post('actual_city'),
+            '{ACTUAL_STREET}' => $this->input->post('actual_street'),
+            '{ACTUAL_HOUSE}' => $this->input->post('actual_house'),
+            '{ACTUAL_HOUSE_BLOCK}' => $this->input->post('actual_house_block'),
+            '{ACTUAL_OFFICE}' => $this->input->post('actual_office'),
+            '{ACTUAL_BOX}' => $this->input->post('actual_box'),
+            '{ACTUAL_APPARTMENT}' => $this->input->post('actual_appartment'),
+            
             '{MANAGER}' => $manager,
             '{JOB_MANAGER_POSITION}' => $job,
             '{CONTACT_PERSON}' => $this->input->post('contact_person'),
@@ -380,6 +405,11 @@ class General extends CI_Controller {
         if ($this->input->post('file')) {
             unlink($file);
         }
+    }
+    
+    function testShortName(){
+        
+        echo preg_replace('/(\w+) (\w)\w+ (\w)\w+/iu', '$2.$3.$1', 'Ермашевский Денис Сергеевич');
     }
 
 }
